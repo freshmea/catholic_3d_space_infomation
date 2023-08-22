@@ -12,9 +12,17 @@ class Connection:
         print('DB 연결 완료')
 
     def insert(self):
-        sql = ''
-        self.cur.execute(sql)
+        sql = 'insert into student (name, address, kor, eng, math, scienct) values (%s, %s, %s, %s, %s, %s)'
+        self.cur.execute(sql, ('choi','sungnamSi' ,'100', '80', '88', '23'))
         res = self.cur.fetchall()
+        for data in res:
+            print(data)
+    
+    def select(self):
+        sql = 'select * from student where name = %s'
+        self.cur.execute(sql, ("choi"))
+        res = self.cur.fetchall()
+        print(res)
         for data in res:
             print(data)
 
@@ -25,6 +33,7 @@ class Connection:
 def main():
     con = Connection()
     con.insert()
+    con.select()
 
 if __name__ == '__main__':
     main()
