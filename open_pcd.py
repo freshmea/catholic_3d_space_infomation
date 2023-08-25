@@ -1,8 +1,9 @@
 import open3d as o3d
-pcd = o3d.io.read_point_cloud("catholic_3d_space_infomation/000000.pcd")
 
-# visualization with open3d
-o3d.visualization.draw_geometries([pcd])
+def main():
+    pcd = o3d.io.read_point_cloud("catholic_3d_space_infomation/000000.pcd")
+    pcd = pcd.voxel_down_sample(voxel_size=0.2)
+    o3d.visualization.draw_geometries([pcd])
 
-# # visualization with pptk
-# v = pptk.viewer(pcd.points)
+if __name__ =='__main__':
+    main()
